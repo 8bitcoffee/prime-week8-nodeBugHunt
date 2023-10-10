@@ -16,7 +16,7 @@ function getQuotes() {
             contentDiv.innerHTML += `
                 <p>
                     "${quote.text}" -${quote.author}
-                    <button onClick="deleteQuotes(${i})">Delete</button>
+                    <button onClick="deleteQuote(${i})">Delete</button>
                 </p>
             `;
             i += 1;
@@ -43,7 +43,7 @@ function submitForm(event) {
     // ???
     axios.post('/quotes', quoteForServer).then((response) => {
         console.log(response);
-        getQuote();
+        getQuotes();
     }).catch((error) => {
         console.log(error);
         alert('Something went wrong.');
@@ -52,7 +52,7 @@ function submitForm(event) {
 
 function deleteQuote(index) {
     // ???
-    axios.delete('/quotes/${index}').then((response) => {
+    axios.delete(`/quotes/${index}`).then((response) => {
         console.log(response);
         getQuotes();
     }).catch((error) => {
